@@ -5,6 +5,15 @@ const typeDefs = gql`
   type Query {
     "A simple type for getting started!"
     hello: String
+    products: [Product!]!
+  }
+
+  type Product {
+    name: String!
+    description: String!
+    quantity: Int!
+    price: Float!
+    onSale: Boolean!
   }
 `
 
@@ -12,6 +21,15 @@ const typeDefs = gql`
 const resolvers = {
   Query: {
     hello: () => 'world',
+    products: () => [
+      {
+        name: 'Bike',
+        description: 'Mountain Bike',
+        quantity: 20,
+        price: 999.99,
+        onSale: false,
+      },
+    ],
   },
 }
 
