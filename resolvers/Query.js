@@ -1,9 +1,7 @@
-const { products, categories } = require('../db')
-
 exports.Query = {
   hello: () => 'world',
-  products: () => products,
-  product: (parent, { id }, context) => products.find((product) => product.id === id),
-  categories: () => categories,
-  category: (parent, { id }, context) => categories.find((category) => category.id === id),
+  products: (parent, args, { db }) => db.products,
+  product: (parent, { id }, { db }) => db.products.find((product) => product.id === id),
+  categories: (parent, args, { db }) => db.categories,
+  category: (parent, { id }, { db }) => db.categories.find((category) => category.id === id),
 }
