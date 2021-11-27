@@ -6,8 +6,8 @@ exports.typeDefs = gql`
   type Query {
     "A simple type for getting started!"
     hello: String
-    products: [Product!]!
     product(id: ID!): Product
+    products(filter: ProductsFilterInput): [Product!]!
     categories: [Category!]!
     category(id: ID!): Category
   }
@@ -20,11 +20,25 @@ exports.typeDefs = gql`
     price: Float!
     onSale: Boolean!
     category: Category
+    reviews: [Review!]!
+  }
+
+  input ProductsFilterInput {
+    onSale: Boolean
+    avgRating: Int
   }
 
   type Category {
     id: ID!
     name: String!
-    products: [Product!]
+    products(filter: ProductsFilterInput): [Product!]
+  }
+
+  type Review {
+    id: ID!
+    date: String!
+    title: String!
+    comment: String!
+    rating: Int!
   }
 `
